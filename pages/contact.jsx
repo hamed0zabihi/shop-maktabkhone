@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
 
 export default function Contact() {
@@ -39,6 +40,17 @@ export default function Contact() {
   const imageWidth = css`
     width: 100%;
   `
+
+  const inputStyle = css`
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  `
   return (
     <div>
       <div className={flexHeaderStyle}>
@@ -52,38 +64,66 @@ export default function Contact() {
       </div>
       <div className={flexHeaderStyle}>
         <h1>contact</h1>
-        <p
-          className={css`
-            margin: 1rem;
-          `}
-        >
-          {' '}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p
-          className={css`
-            margin: 1rem;
-          `}
-        >
-          {' '}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div>
+          <p
+            className={css`
+              margin: 1rem;
+            `}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <div>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className={css`
+              margin: auto 15px;
+            `}
+          >
+            <label htmlFor="fname">Name</label>
+            <input
+              type="text"
+              id="fname"
+              name="firstname"
+              placeholder="Your name.."
+              className={inputStyle}
+            />
+
+            <label htmlFor="lname">email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email.."
+              className={inputStyle}
+            />
+
+            <label htmlFor="subject">Subject</label>
+            <textarea
+              id="subject"
+              name="subject"
+              placeholder="Write something.."
+              className={inputStyle}
+            />
+
+            <button>submit</button>
+          </form>
+        </div>
       </div>
-      <div className={flexContainerStyle}>
-        <div />
-      </div>
-    </div>
+      {/* //dev fex */}
+    </div> // maindev
   )
 }
