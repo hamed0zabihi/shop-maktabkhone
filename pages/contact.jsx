@@ -50,6 +50,12 @@ export default function Contact() {
     margin-bottom: 16px;
     resize: vertical;
   `
+  const marginRightLeftFifteen = css`
+    margin: auto 15px;
+  `
+  const marginAutoOneRem = css`
+    margin: 1rem;
+  `
   return (
     <div>
       <div className={flexHeaderStyle}>
@@ -64,11 +70,7 @@ export default function Contact() {
       <div className={flexHeaderStyle}>
         <h1>contact</h1>
         <div>
-          <p
-            className={css`
-              margin: 1rem;
-            `}
-          >
+          <p className={marginAutoOneRem}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -88,9 +90,7 @@ export default function Contact() {
         <div>
           <form
             onSubmit={(e) => e.preventDefault()}
-            className={css`
-              margin: auto 15px;
-            `}
+            className={marginRightLeftFifteen}
           >
             <label htmlFor="fname">Name</label>
             <input

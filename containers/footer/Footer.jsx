@@ -12,12 +12,11 @@ export default function Footer() {
     text-align: center;
     margin-top: 50px;
   `
+  const marginTopStyle = css`
+    margin-top: 50px;
+  `
   return (
-    <div
-      className={css`
-        margin-top: 50px;
-      `}
-    >
+    <div className={marginTopStyle}>
       <div className={footerStyle}>
         <p>Footer</p>
       </div>

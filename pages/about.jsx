@@ -39,6 +39,9 @@ export default function About() {
   const imageWidth = css`
     width: 100%;
   `
+  const marginOneRem = css`
+    margin: 1rem;
+  `
 
   return (
     <div>
@@ -53,12 +56,7 @@ export default function About() {
       </div>
       <div className={flexHeaderStyle}>
         <h1>about</h1>
-        <p
-          className={css`
-            margin: 1rem;
-          `}
-        >
-          {' '}
+        <p className={marginOneRem}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -67,12 +65,7 @@ export default function About() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-        <p
-          className={css`
-            margin: 1rem;
-          `}
-        >
-          {' '}
+        <p className={marginOneRem}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
