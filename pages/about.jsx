@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
 
 export default function About() {

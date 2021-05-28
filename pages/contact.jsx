@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
 
 export default function Contact() {
@@ -123,7 +122,6 @@ export default function Contact() {
           </form>
         </div>
       </div>
-      {/* //dev fex */}
-    </div> // maindev
+    </div>
   )
 }

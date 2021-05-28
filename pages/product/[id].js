@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
 import { useRouter } from 'next/router'
 
