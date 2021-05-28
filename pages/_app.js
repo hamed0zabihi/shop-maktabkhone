@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Layout from '../containers/layout/Layout'
+import Layout from '../containers/Layout/Layout'
 
 function MyApp({ Component, pageProps }) {
   return (
