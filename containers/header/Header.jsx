@@ -24,19 +24,8 @@ a {
     background-color: #4CAF50;
   }
 `
-
-// const activeStyle = css`
-//   float: right;
-// `
-// const lastAnchor = css`
-//   color: red;
-//   a {
-//     background-color: red !important;
-//   }
-// `
 export default function Header() {
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <div>
       <ul className={ulStyle}>
         <li className={liStyle}>
@@ -48,11 +37,6 @@ export default function Header() {
         <li className={liStyle}>
           <Link href="/contact">Contact</Link>
         </li>
-        {/* <li className={liStyle}>
-          <Link className={lastAnchor} href="/">
-            Home
-          </Link>
-        </li> */}
       </ul>
     </div>
   )
