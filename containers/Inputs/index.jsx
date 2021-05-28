@@ -1,0 +1,5 @@
+export { default as Input } from './Input/Input'
+export { default as InputEmail } from './InputEmail/InputEmail'
+export { default as InputPassword } from './InputPassword/InputPassword'
+export { default as Button } from './Button/Button'
+export { default as TextArea } from './TextArea/TextArea'

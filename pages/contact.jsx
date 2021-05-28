@@ -1,4 +1,6 @@
 import { css } from '@emotion/css'
+import Image from '../containers/Image/Image'
+import { Button, Input, InputEmail, TextArea } from '../containers/Inputs'
 
 export default function Contact() {
   const flexHeaderStyle = css`
@@ -36,19 +38,19 @@ export default function Contact() {
       order: 0;
     }
   `
-  const imageWidth = css`
-    width: 100%;
-  `
 
   const inputStyle = css`
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
   `
   const marginRightLeftFifteen = css`
     margin: auto 15px;
@@ -60,10 +62,10 @@ export default function Contact() {
     <div>
       <div className={flexHeaderStyle}>
         <div>
-          <img
+          <Image
             src="/images/0-1200x400.jpg"
-            alt="Denim Jeans"
-            className={imageWidth}
+            alt="contact image"
+            width="100%"
           />
         </div>
       </div>
@@ -88,37 +90,14 @@ export default function Contact() {
           </p>
         </div>
         <div>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className={marginRightLeftFifteen}
-          >
-            <label htmlFor="fname">Name</label>
-            <input
-              type="text"
-              id="fname"
-              name="firstname"
-              placeholder="Your name.."
-              className={inputStyle}
-            />
-
-            <label htmlFor="lname">email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your email.."
-              className={inputStyle}
-            />
-
+          <form onSubmit={(e) => e.preventDefault()} className={inputStyle}>
+            <label>Name</label>
+            <Input />
+            <label>email</label>
+            <InputEmail />
             <label htmlFor="subject">Subject</label>
-            <textarea
-              id="subject"
-              name="subject"
-              placeholder="Write something.."
-              className={inputStyle}
-            />
-
-            <button>submit</button>
+            <TextArea />
+            <Button type="submit">submit</Button>
           </form>
         </div>
       </div>

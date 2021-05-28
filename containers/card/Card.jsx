@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
 import Link from 'next/link'
+import Image from '../Image/Image'
 
 export default function Card({ id, src, title, price, description }) {
   const imageWidth = css`
@@ -34,7 +35,7 @@ export default function Card({ id, src, title, price, description }) {
   `
   return (
     <div className={card}>
-      <img src={src} alt="Denim Jeans" className={imageWidth} />
+      <Image src={src} alt={title} width="100%" />
       <h1>{title}</h1>
       <p className={priceStyle}>{price}</p>
       <p>{description}</p>

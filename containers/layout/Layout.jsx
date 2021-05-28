@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Footer from '../footer/Footer'
-import Header from '../header/Header'
+import Footer from '../Footer/Footer'
+import Header from '../Header/Header'
 
 export default function Layout({ children }) {
   return (

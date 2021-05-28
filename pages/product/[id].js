@@ -1,5 +1,6 @@
 import { css } from '@emotion/css'
 import { useRouter } from 'next/router'
+import Image from '../../containers/Image/Image'
 
 export default function SingleProduct() {
   const router = useRouter()
@@ -24,7 +25,7 @@ export default function SingleProduct() {
     <div>
       <div className={flexContainerStyle}>
         <div>
-          <img src={`/images/${id}-400x400.jpg`} alt="Denim Jeans" />
+          <Image src={`/images/${id}-400x400.jpg`} alt={title} />
         </div>
         <div>
           <h1>{title}</h1>

@@ -37,6 +37,9 @@ export default function Header() {
         <li className={liStyle}>
           <Link href="/contact">Contact</Link>
         </li>
+        <li className={liStyle}>
+          <Link href="/login">Login</Link>
+        </li>
       </ul>
     </div>
   )

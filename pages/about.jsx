@@ -1,4 +1,6 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
+import Image from '../containers/Image/Image'
 
 export default function About() {
   const flexHeaderStyle = css`
@@ -36,9 +38,6 @@ export default function About() {
       order: 0;
     }
   `
-  const imageWidth = css`
-    width: 100%;
-  `
   const marginOneRem = css`
     margin: 1rem;
   `
@@ -47,11 +46,7 @@ export default function About() {
     <div>
       <div className={flexHeaderStyle}>
         <div>
-          <img
-            src="/images/0-1200x400.jpg"
-            alt="Denim Jeans"
-            className={imageWidth}
-          />
+          <Image src="/images/0-1200x400.jpg" alt="about image" width="100%" />
         </div>
       </div>
       <div className={flexHeaderStyle}>
