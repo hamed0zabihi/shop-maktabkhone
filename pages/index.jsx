@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
-import Card from './containers/card/Card'
+import Card from '../containers/card/Card'
 
 export default function Home() {
   const flexHeaderStyle = css`
