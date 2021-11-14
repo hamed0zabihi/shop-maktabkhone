@@ -1,5 +1,6 @@
 import { css } from '@emotion/css'
 import Input from '../Input/Input'
+
 const InputEmail = ({ placeholder = 'please insert email' }) => {
   return (
     <>

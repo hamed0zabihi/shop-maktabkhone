@@ -1,6 +1,6 @@
 import { css } from '@emotion/css'
 import { useRouter } from 'next/router'
-import Image from '../../containers/Image/Image'
+import Image from '../../components/Styles/Image/Image'
 
 export default function SingleProduct() {
   const router = useRouter()

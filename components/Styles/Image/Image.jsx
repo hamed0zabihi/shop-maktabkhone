@@ -1,4 +1,5 @@
 import { css } from '@emotion/css'
+
 const Image = ({
   src = '/images/notfoundimage.png',
   alt = 'images',

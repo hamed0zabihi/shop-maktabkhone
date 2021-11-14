@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
-import Image from '../containers/Image/Image'
+import Image from '../components/Styles/Image/Image'
 
 export default function About() {
   const flexHeaderStyle = css`

@@ -1,6 +1,11 @@
 import { css } from '@emotion/css'
-import Image from '../containers/Image/Image'
-import { Button, Input, InputEmail, TextArea } from '../containers/Inputs'
+import Image from '../components/Styles/Image/Image'
+import {
+  Button,
+  Input,
+  InputEmail,
+  TextArea,
+} from '../components/Styles/Inputs'
 
 export default function Contact() {
   const flexHeaderStyle = css`

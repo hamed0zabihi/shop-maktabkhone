@@ -1,33 +1,20 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { css } from '@emotion/css'
-import LayoutAuth from '../containers/LayoutAuth/LayoutAuth'
-import { Button, InputEmail, InputPassword } from '../containers/Inputs'
+import LayoutAuth from '../components/Styles/LayoutAuth/LayoutAuth'
+import {
+  Button,
+  InputEmail,
+  InputPassword,
+  FormControl,
+} from '../components/Styles/Inputs'
+import { H1, Space } from '../components/Styles/Typography/index'
 export default function Login() {
   const formStyle = css`
     display: flex;
     flex-direction: column;
-
-    margin: auto 10px;
+    margin: 10px 10px;
     padding: auto 5px;
     input {
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
-      border-radius: 3px;
-      width: 100%;
-      height: 25px;
-      margin-bottom: 25px;
-      padding-left: 25px;
-      background-botton: transparent;
-      outline: none;
-      color: #101010;
-      -webkit-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-      -moz-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-      -ms-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-      -o-box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-      box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
-      border: 1px solid #c8c8c8;
       &:focus {
         -webkit-box-shadow: 0 0 2px #ed1c24 inset;
         -moz-box-shadow: 0 0 2px #ed1c24 inset;
@@ -43,7 +30,7 @@ export default function Login() {
       width: auto;
       outline: none;
       border-radius: 5px;
-      color: #101010;
+
       padding: 5px;
     }
     label {
@@ -56,11 +43,18 @@ export default function Login() {
   }
   return (
     <LayoutAuth>
+      <Space />
+      <H1>Login</H1>
       <form className={formStyle} onSubmit={handleSubmit}>
         <label>email</label>
-        <InputEmail />
+        <FormControl>
+          <InputEmail />
+        </FormControl>
         <label>password</label>
-        <InputPassword />
+        <FormControl>
+          <InputPassword />
+        </FormControl>
+        <Space />
         <Button type="submit">login</Button>
       </form>
     </LayoutAuth>
