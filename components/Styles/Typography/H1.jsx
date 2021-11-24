@@ -1,7 +1,7 @@
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-const H1 = ({ children, align = 'left' }) => {
+const H1 = ({ children = 'H1 Typography', align = 'left' }) => {
   const theme = useTheme()
   const cssH1Default = css`
     text-align: ${align};

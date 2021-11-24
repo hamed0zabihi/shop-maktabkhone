@@ -1,10 +1,16 @@
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-const Button = ({ type = 'button', children = 'button' }) => {
+const Button = ({
+  type = 'button',
+  children = 'button',
+  backgroundColor = 'black',
+}) => {
   const theme = useTheme()
   const defaultCssButton = css`
-    background-color: ${theme.colors.primary};
+    background-color: ${backgroundColor
+      ? backgroundColor
+      : theme.colors.primary};
     color: ${theme.button.textColor};
     margin-top: ${theme.button.marginTop};
     display: ${theme.button.display};
