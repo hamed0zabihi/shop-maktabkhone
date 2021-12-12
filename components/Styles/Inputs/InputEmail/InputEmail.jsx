@@ -1,10 +1,20 @@
-import { css } from '@emotion/css'
 import Input from '../Input/Input'
 
-const InputEmail = ({ placeholder = 'please insert email' }) => {
+const InputEmail = ({
+  placeholder = 'please insert email',
+  id = '',
+  customCalss = '',
+  required = '',
+}) => {
   return (
     <>
-      <Input type="email" placeholder={placeholder} />
+      <Input
+        type="email"
+        placeholder={placeholder}
+        id={id}
+        customCalss={customCalss}
+        required={required}
+      />
     </>
   )
 }

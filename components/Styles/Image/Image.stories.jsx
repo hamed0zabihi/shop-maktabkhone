@@ -9,7 +9,7 @@ export default {
 const Template = (args) => <Image {...args} />
 export const DefaultImage = Template.bind({})
 DefaultImage.args = {
-  src: 'https://via.placeholder.com/200x125',
+  src: 'http://localhost:3000/images/notfoundimage.png',
   alt: 'images',
   width: 'inherit',
   height: 'inherit',

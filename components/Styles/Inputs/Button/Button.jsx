@@ -1,9 +1,10 @@
+import React from 'react'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
 const Button = ({
   type = 'button',
-  children = 'button',
+  children = 'children',
   backgroundColor = 'black',
 }) => {
   const theme = useTheme()

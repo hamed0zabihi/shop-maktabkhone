@@ -154,6 +154,7 @@ const Reset = () => (
           font-size: 16px;
           font-weight: 400;
           line-height: 1.75;
+          background-color: black;
         }
       `}
     />

@@ -21,23 +21,6 @@ export default function About() {
       margin: auto;
     }
   `
-  const flexContainerStyle = css`
-    margin-top: 1rem;
-    display: flex !important;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: normal;
-    align-content: center;
-    &:nth-child(1) {
-      display: block;
-      flex-grow: 0;
-      flex-shrink: 1;
-      flex-basis: auto;
-      align-self: auto;
-      order: 0;
-    }
-  `
   const marginOneRem = css`
     margin: 1rem;
   `
@@ -69,9 +52,6 @@ export default function About() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </div>
-      <div className={flexContainerStyle}>
-        <div />
       </div>
     </div>
   )
