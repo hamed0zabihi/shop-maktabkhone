@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { css } from '@emotion/css'
+import { PRODUCT_HOME_ACTION } from '../../redux/actions/product'
 import { FakeDataProducts } from './FakeDataProducts'
 import Cardt from '../Styles/Card/Cardt'
+import ReactLoading from 'react-loading'
 
 const HomePageProduct = () => {
+  const dispatch = useDispatch()
   const FakeDataProductsGet = FakeDataProducts()
-
+  useEffect(() => {
+    dispatch(PRODUCT_HOME_ACTION())
+  }, [])
+  const { products, isFetching, error } = useSelector((state) => state.products)
   const containerProducts = css`
     display: flex;
     flex-direction: row;
@@ -27,17 +34,21 @@ const HomePageProduct = () => {
 
   return (
     <div className={containerProducts}>
-      {FakeDataProductsGet.map((el) => (
-        <div key={el.id} className={productItem}>
-          <Cardt
-            id={el.id}
-            src={el.image}
-            title={el.title}
-            price={el.price}
-            description={el.description}
-          />
-        </div>
-      ))}
+      {isFetching && (
+        <ReactLoading type="spin" color="red" height={36} width={36} />
+      )}
+      {!isFetching &&
+        products.map((el) => (
+          <div key={el.id} className={productItem}>
+            <Cardt
+              id={el.id}
+              src={el.image}
+              title={el.title}
+              price={el.price}
+              description={el.description}
+            />
+          </div>
+        ))}
     </div>
   )
 }
