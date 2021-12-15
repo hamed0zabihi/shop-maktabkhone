@@ -26,6 +26,12 @@ const fetchUrl = (url, method = 'GET', body = {}) => {
   // #### axios  request ####
   // ########################
 
+  axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
+  axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
+  axios.defaults.headers['Access-Control-Allow-Methods'] =
+    'GET, POST, PUT, DELETE'
+  axios.defaults.headers['Access-Control-Allow-Credentials'] = true
+  axios.defaults.headers['crossorigin'] = true
   const errorFunc = (error) => {
     if (error.response) {
       // Request made and server responded

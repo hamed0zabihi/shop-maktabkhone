@@ -12,12 +12,13 @@ export const LOGIN_ACTION = (user) => {
 }
 
 export const REGISTER_ACTION = (user) => {
+  console.log('userrrrrrrrrrrrrrrrrrrr', user)
   return async (dispatch) => {
     return reduxCall(dispatch, {
       url: 'http://restapi.adequateshop.com/api/authaccount/registration',
       method: 'POST',
       name: 'REGISTER',
-      body: JSON.stringify(user),
+      body: user,
     })
   }
 }

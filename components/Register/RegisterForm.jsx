@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { REGISTER_ACTION, LOGIN_ACTION } from '../../redux/actions/user'
 import Link from 'next/link'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
@@ -12,8 +15,44 @@ import {
   faEyeSlash,
   faKey,
 } from '@fortawesome/free-solid-svg-icons'
+import ReactLoading from 'react-loading'
 
 const RegisterForm = () => {
+  const dispatch = useDispatch()
+  const { user, isLoading, message, codeStatus } = useSelector(
+    (state) => state.user
+  )
+
+  // user form value
+  const [formValue, setFormValue] = useState({})
+  const handleOnChange = (name, value) => {
+    setFormValue({ ...formValue, [name]: value })
+  }
+
+  // check confirm password
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const handleConfirmPassword = (e) => {
+    setConfirmPassword(e)
+  }
+  const isEqualPasswordsValue = () => {
+    if (formValue?.password === confirmPassword) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  // submit and register
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (Object.values(formValue).length > 2 && isEqualPasswordsValue) {
+      console.log('formValue', formValue)
+      await dispatch(REGISTER_ACTION(formValue))
+      // await dispatch(LOGIN_ACTION(formValue))
+    }
+  }
+
+  // theme
   const theme = useTheme()
   const loginClass = css`
   display: ${theme.login.display};
@@ -58,6 +97,8 @@ const RegisterForm = () => {
         border: ${theme.login.box.loginBtn.border};
         cursor: ${theme.login.box.loginBtn.cursor};
         margin-bottom: ${theme.login.box.loginBtn.marginBottom};
+        display:inline-flex;
+        justify-content:center;
       }
       .new-account a {
         color: ${theme.login.box.newAccount.color};
@@ -128,10 +169,6 @@ const RegisterForm = () => {
    }
   `
 
-  const handleSubmit = (e) => {
-    console.log('handleSUBMIT')
-    e.preventDefault()
-  }
   return (
     <LayoutAuth>
       <div className={loginClass}>
@@ -140,73 +177,99 @@ const RegisterForm = () => {
             <H2 align="center">
               Sign<span> Up</span>
             </H2>
-            <div className="forms">
-              <div className="user-input">
-                <Input
-                  customCalss="login-input"
-                  placeholder="name"
-                  id="name"
-                  required
-                />
-                <i>
-                  <FontAwesomeIcon icon={faUser} />
-                </i>
-              </div>
-              <div className="user-input">
-                <InputEmail
-                  customCalss="login-input"
-                  placeholder="email"
-                  id="email"
-                  required
-                />
-                <i>
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </i>
-              </div>
-              <div className="pass-input">
-                <InputPassword
-                  customCalss="login-input"
-                  placeholder="password"
-                  id="my-password"
-                  required
-                />
-                <span className="eye">
-                  <i id="hide-1">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </i>
-                  <i id="hide-2">
-                    <FontAwesomeIcon icon={faEye} />
-                  </i>
-                </span>
-              </div>
-              <div className="pass-input">
-                <InputPassword
-                  customCalss="login-input"
-                  placeholder="confirm password"
-                  id="confirm-password"
-                  required
-                />
-                <span className="eye">
-                  <i id="hide-1">
-                    <FontAwesomeIcon icon={faEyeSlash} />
-                  </i>
-                  <i id="hide-2">
-                    <FontAwesomeIcon icon={faKey} />
-                  </i>
-                </span>
-              </div>
-            </div>
-            <button type="button" className="login-btn">
-              Sign Up
-            </button>
-            <p className="new-account">
-              you are a member?
-              <Link href="/login">Log In</Link>
-            </p>
-            <br />
-            <p className="f-pass">
-              <a href="/#">forgot password?</a>
-            </p>
+            {message && <p>{message}</p>}
+            {codeStatus !== 0 && !user.Token && (
+              <>
+                <div className="forms">
+                  <div className="user-input">
+                    <Input
+                      customCalss="login-input"
+                      placeholder="name"
+                      id="name"
+                      required
+                      onChanged={(e) => handleOnChange('name', e.target.value)}
+                    />
+                    <i>
+                      <FontAwesomeIcon icon={faUser} />
+                    </i>
+                  </div>
+                  <div className="user-input">
+                    <InputEmail
+                      customCalss="login-input"
+                      placeholder="email"
+                      id="email"
+                      required
+                      onChanged={(e) => handleOnChange('email', e.target.value)}
+                    />
+                    <i>
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </i>
+                  </div>
+                  <div className="pass-input">
+                    <InputPassword
+                      customCalss="login-input"
+                      placeholder="password"
+                      id="my-password"
+                      required
+                      onChanged={(e) =>
+                        handleOnChange('password', e.target.value)
+                      }
+                    />
+                    <span className="eye">
+                      <i id="hide-1">
+                        <FontAwesomeIcon icon={faEyeSlash} />
+                      </i>
+                      <i id="hide-2">
+                        <FontAwesomeIcon icon={faEye} />
+                      </i>
+                    </span>
+                  </div>
+                  <div className="pass-input">
+                    <InputPassword
+                      customCalss="login-input"
+                      placeholder="confirm password"
+                      id="confirm-password"
+                      required
+                      onChanged={(e) => handleConfirmPassword(e.target.value)}
+                    />
+                    <span className="eye">
+                      <i id="hide-1">
+                        <FontAwesomeIcon icon={faEyeSlash} />
+                      </i>
+                      <i id="hide-2">
+                        <FontAwesomeIcon icon={faKey} />
+                      </i>
+                    </span>
+                  </div>
+                </div>
+                {!isLoading ? (
+                  <button
+                    type="button"
+                    className="login-btn"
+                    onClick={handleSubmit}
+                  >
+                    Sign Up
+                  </button>
+                ) : (
+                  <ReactLoading
+                    type="spin"
+                    color="red"
+                    height={36}
+                    width={36}
+                    className="login-btn"
+                  />
+                )}
+
+                <p className="new-account">
+                  you are a member?
+                  <Link href="/login">Log In</Link>
+                </p>
+                <br />
+                <p className="f-pass">
+                  <a href="/#">forgot password?</a>
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>

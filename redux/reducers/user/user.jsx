@@ -38,6 +38,9 @@ export const user = (state = initialState, action) => {
         isLoading: true,
       }
     case Types.REGISTER_SUCCESS:
+      if (action.payload.data?.Token && !action.payload.data?.codeStatus) {
+        localStorage.setItem('token', JSON.stringify(action.payload.data.Token))
+      }
       return {
         ...state,
         isLoading: false,
