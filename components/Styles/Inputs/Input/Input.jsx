@@ -7,7 +7,11 @@ const Input = ({
   id = '',
   customCalss = '',
   required = '',
+  onChanged,
 }) => {
+  const handleOnchage = (event) => {
+    onChange(event.target.value)
+  }
   const defaultCssInput = css`
     display: block;
     width: 100%;
@@ -42,6 +46,7 @@ const Input = ({
         placeholder={placeholder}
         id={id}
         required={required}
+        onChange={onChanged}
       />
     </>
   )

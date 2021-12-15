@@ -6,6 +6,7 @@ const InputPassword = ({
   id = '',
   customCalss = '',
   required = '',
+  onChanged,
 }) => {
   return (
     <>
@@ -15,6 +16,7 @@ const InputPassword = ({
         id={id}
         customCalss={customCalss}
         required={required}
+        onChanged={onChanged}
       />
     </>
   )

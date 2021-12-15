@@ -1,10 +1,10 @@
 import * as Types from '../../redux/actions/actionTypes'
 import FetchUrl from './FetchUrl'
 
-const reduxCall = async (dispatch, { url, method, datas, name }) => {
+const reduxCall = async (dispatch, { url, method, body, name }) => {
   await dispatch({ type: Types[`${name}_REQUEST`] })
   try {
-    const { data, status } = await FetchUrl(url, method, datas)
+    const { data, status } = await FetchUrl(url, method, body)
     if (status === 200) {
       await dispatch({ type: Types[`${name}_SUCCESS`], payload: data })
     }

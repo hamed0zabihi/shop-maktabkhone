@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const fetchUrl = (url, method = 'get', data = {}) => {
+const fetchUrl = (url, method = 'GET', body = {}) => {
   console.log('url', url)
   // ########################
   // ### error unexpected ###
@@ -43,22 +43,22 @@ const fetchUrl = (url, method = 'get', data = {}) => {
   }
   let responsed
   switch (method) {
-    case 'get':
+    case 'GET':
       return (responsed = axios.get(url).catch((error) => errorFunc(error)))
       break
-    case 'post':
+    case 'POST':
       return (responsed = axios
-        .post(url, data)
+        .post(url, body)
         .catch((error) => errorFunc(error)))
       break
-    case 'put':
+    case 'PUT':
       return (responsed = axios
-        .put(url, data)
+        .put(url, body)
         .catch((error) => errorFunc(error)))
       break
-    case 'delete':
+    case 'DELETE':
       return (responsed = axios
-        .delete(url, data)
+        .delete(url, body)
         .catch((error) => errorFunc(error)))
       break
     default:

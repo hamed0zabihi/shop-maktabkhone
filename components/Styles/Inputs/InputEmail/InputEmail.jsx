@@ -5,6 +5,7 @@ const InputEmail = ({
   id = '',
   customCalss = '',
   required = '',
+  onChanged,
 }) => {
   return (
     <>
@@ -14,6 +15,7 @@ const InputEmail = ({
         id={id}
         customCalss={customCalss}
         required={required}
+        onChanged={onChanged}
       />
     </>
   )
