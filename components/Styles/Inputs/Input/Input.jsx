@@ -39,7 +39,6 @@ const Input = ({
   `
   return (
     <>
-      {console.log(customCalss.length)}
       <input
         className={customCalss.length > 1 ? customCalss : defaultCssInput}
         type={type}

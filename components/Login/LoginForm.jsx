@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { LOGIN_ACTION } from '../../redux/actions/user'
+import { useRouter } from 'next/router'
 import { InputEmail, InputPassword } from '../Styles/Inputs'
 import { H2 } from '../Styles/Typography/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,9 +13,18 @@ import ReactLoading from 'react-loading'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
-  const { user, isLoading, message, codeStatus } = useSelector(
+  const router = useRouter()
+  const { user, isLoading, message, isLoggedIn } = useSelector(
     (state) => state.user
   )
+  // redirect after login
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/')
+    }
+  }, [isLoggedIn])
+  // user form value
+  // form
   const [formValue, setFormValue] = useState({})
   const handleOnChange = (name, value) => {
     setFormValue({ ...formValue, [name]: value })
@@ -150,7 +160,7 @@ const LoginForm = () => {
             Log<span> In</span>
           </H2>
           {message && <p>{message}</p>}
-          {codeStatus !== 0 && !user.Token && (
+          {!isLoggedIn && (
             <>
               <div className="forms">
                 <div className="user-input">

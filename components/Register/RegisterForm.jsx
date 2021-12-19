@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { REGISTER_ACTION, LOGIN_ACTION } from '../../redux/actions/user'
+import { REGISTER_ACTION } from '../../redux/actions/user'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
@@ -16,13 +17,20 @@ import {
   faKey,
 } from '@fortawesome/free-solid-svg-icons'
 import ReactLoading from 'react-loading'
+import { useEffect } from 'react'
 
 const RegisterForm = () => {
   const dispatch = useDispatch()
-  const { user, isLoading, message, codeStatus } = useSelector(
+  const router = useRouter()
+  const { user, isLoading, message, isLoggedIn } = useSelector(
     (state) => state.user
   )
-
+  // redirect after register
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/')
+    }
+  }, [isLoggedIn])
   // user form value
   const [formValue, setFormValue] = useState({})
   const handleOnChange = (name, value) => {
@@ -46,9 +54,9 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (Object.values(formValue).length > 2 && isEqualPasswordsValue) {
-      console.log('formValue', formValue)
-      await dispatch(REGISTER_ACTION(formValue))
-      // await dispatch(LOGIN_ACTION(formValue))
+      const uniqBase64 = btoa(formValue.email + formValue.password)
+      const user = { ...formValue, uniq: uniqBase64 }
+      await dispatch(REGISTER_ACTION(user))
     }
   }
 
@@ -178,7 +186,7 @@ const RegisterForm = () => {
               Sign<span> Up</span>
             </H2>
             {message && <p>{message}</p>}
-            {codeStatus !== 0 && !user.Token && (
+            {!isLoggedIn && (
               <>
                 <div className="forms">
                   <div className="user-input">

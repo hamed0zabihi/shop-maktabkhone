@@ -1,6 +1,11 @@
 import { useState } from 'react'
+import jwt from 'jsonwebtoken'
 
 export default function useToken() {
+  const initial = {
+    email: 'test@test.com',
+  }
+
   const getToken = () => {
     if (typeof window !== 'undefined') {
       const tokenString = localStorage.getItem('token')
@@ -18,8 +23,18 @@ export default function useToken() {
     }
   }
 
+  const verifyToken = (user) => {
+    const decoded = jwt.verify(token, 'secret')
+    if (decoded && decoded?.data.email === user?.email) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return {
     setToken: saveToken,
     token,
+    verifyToken,
   }
 }

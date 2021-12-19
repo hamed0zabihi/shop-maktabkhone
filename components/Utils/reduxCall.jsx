@@ -5,8 +5,13 @@ const reduxCall = async (dispatch, { url, method, body, name }) => {
   await dispatch({ type: Types[`${name}_REQUEST`] })
   try {
     const { data, status } = await FetchUrl(url, method, body)
-    if (status === 200) {
+    if (
+      (status === 200 || status === 201) &&
+      !!(Object.keys(data).length || data.length)
+    ) {
       await dispatch({ type: Types[`${name}_SUCCESS`], payload: data })
+    } else {
+      await dispatch({ type: Types[`${name}_FAILED`], payload: {} })
     }
   } catch (error) {
     await dispatch({ type: Types[`${name}_FAILED`], payload: {} })

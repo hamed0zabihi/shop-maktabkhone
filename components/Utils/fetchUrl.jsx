@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const fetchUrl = (url, method = 'GET', body = {}) => {
-  console.log('url', url)
   // ########################
   // ### error unexpected ###
   // ########################
