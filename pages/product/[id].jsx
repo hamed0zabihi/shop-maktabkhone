@@ -1,20 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { FakeDataProducts } from '../../components/Product/FakeDataProducts'
+import { SINGLE_PRODUCT_ACTION } from '../../redux/actions/product'
 import ProductDetailsPage from '../../components/Product/ProductDetailsPage'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import ReactLoading from 'react-loading'
 
 export default function SingleProduct() {
   const router = useRouter()
   const { id } = router.query
-  const datas = FakeDataProducts()
-  const filteredData = datas.filter((el) => el.id === parseInt(id, 10))
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (id && typeof id !== 'undefined') {
+      dispatch(SINGLE_PRODUCT_ACTION(id))
+    }
+  }, [dispatch, id])
+  const { product, isLoading, error } = useSelector((state) => state.product)
 
   return (
     <>
-      {filteredData?.length ? (
-        <ProductDetailsPage {...(filteredData[0] || {})} />
+      {id && typeof id !== 'undefined' && !isLoading && Object.keys(product) ? (
+        <ProductDetailsPage {...product} />
       ) : (
-        'loading'
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '80vh',
+          }}
+        >
+          <div>
+            <ReactLoading type="spin" color="red" height={36} width={36} />
+          </div>
+        </div>
       )}
     </>
   )

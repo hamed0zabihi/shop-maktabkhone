@@ -1,23 +1,55 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ADD_TO_CART_ACTION } from '../../redux/actions/cart'
 import { css } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { keyframes } from '@emotion/react'
 import Image from '../Styles/Image/Image'
 
-const ProductDetailsPage = ({
-  title = 'title',
-  image = '/images/product/01-shoes.png',
-  price = 100000000,
-  description = 'In addition to the Nike WMNS Air Force 1 Shadow Sisterhood in the Orange and White colorway, another colorway has surfaced in a much more colorful rendition. This double-layered women’s colorway of the Nike Air Force 1 gets hit with a mix of smooth and tumbled leather construction all over the upper in hues that include black, gold, light purple, and a couple of shades of red. Highlights of this colorway include gold “Sister” lace dubraes and “We Ride Together” printed on the insoles with a dice hanging from Swooshe',
-  imageGallery = [
-    '/images/product/p-01-01.png',
-    '/images/product/p-01-02.png',
-    '/images/product/p-01-03.png',
-  ],
-  inventory = 1,
-}) => {
-  const theme = useTheme()
+const ProductDetailsPage = (product) => {
+  const {
+    title = 'title',
+    image = '/images/product/01-shoes.png',
+    price = '100000000',
+    description = 'In addition to the Nike WMNS Air Force 1 Shadow Sisterhood in the Orange and White colorway, another colorway has surfaced in a much more colorful rendition. This double-layered women’s colorway of the Nike Air Force 1 gets hit with a mix of smooth and tumbled leather construction all over the upper in hues that include black, gold, light purple, and a couple of shades of red. Highlights of this colorway include gold “Sister” lace dubraes and “We Ride Together” printed on the insoles with a dice hanging from Swooshe',
+    imageGallery = [
+      '/images/product/p-01-01.png',
+      '/images/product/p-01-02.png',
+      '/images/product/p-01-03.png',
+    ],
+    inventory = 1,
+    id = 1,
+  } = product
+  const dispatch = useDispatch()
 
+  // increase and decrease product
+  const [numberOfProduct, setNumberOfProduct] = useState(1)
+  const handleIncDecProduct = (type) => {
+    if (type === 'inc' && numberOfProduct < inventory) {
+      return setNumberOfProduct(numberOfProduct + 1)
+    } else if (type === 'dec' && numberOfProduct > 1) {
+      return setNumberOfProduct(numberOfProduct - 1)
+    }
+  }
+  // check product is exist in cart or not
+  const cart = useSelector((state) => state.cart)
+  const isExistProductToCart = cart.find((el) => el.id === id)
+  // add to cart
+  const [addClassAnimation, setAddClassAnimation] =
+    useState('add-to-cart-button')
+
+  const handleClickAddToCard = async () => {
+    !isExistProductToCart
+      ? await dispatch(ADD_TO_CART_ACTION(product, numberOfProduct))
+      : ''
+    setAddClassAnimation('add-to-cart-button added')
+    setTimeout(() => {
+      setAddClassAnimation('add-to-cart-button')
+    }, 2000)
+  }
+
+  // theme
+  const theme = useTheme()
   const colorFont = `${theme.productDetailsPage.colors.colorFont}`
   const bgSliderTwo = `${theme.productDetailsPage.colors.bgSliderTwo}`
   const bgSliderOne = `${theme.productDetailsPage.colors.bgSliderOne}`
@@ -298,8 +330,7 @@ const ProductDetailsPage = ({
       .incDecSec.borderRadius};
     overflow: ${theme.productDetailsPage.containerDetails.productDetails
       .incDecSec.overflow};
-    padding: ${theme.productDetailsPage.containerDetails.productDetails
-      .incDecSec.padding};
+    height: 35px;
     .incBtn {
       width: ${theme.productDetailsPage.containerDetails.productDetails
         .incDecSec.incBtn.width};
@@ -311,6 +342,10 @@ const ProductDetailsPage = ({
         .incDecSec.incBtn.alignItems};
       color: ${theme.productDetailsPage.containerDetails.productDetails
         .incDecSec.incBtn.color};
+      padding: ${theme.productDetailsPage.containerDetails.productDetails
+        .incDecSec.padding};
+      border: none;
+      cursor: pointer;
     }
     .decBtn {
       display: ${theme.productDetailsPage.containerDetails.productDetails
@@ -323,6 +358,10 @@ const ProductDetailsPage = ({
         .incDecSec.decBtn.width};
       color: ${theme.productDetailsPage.containerDetails.productDetails
         .incDecSec.decBtn.color};
+      padding: ${theme.productDetailsPage.containerDetails.productDetails
+        .incDecSec.padding};
+      border: none;
+      cursor: pointer;
     }
     .incDecInput {
       width: ${theme.productDetailsPage.containerDetails.productDetails
@@ -343,20 +382,12 @@ const ProductDetailsPage = ({
         .incDecSec.incDecInput.fontWeight};
       background: ${theme.productDetailsPage.containerDetails.productDetails
         .incDecSec.incDecInput.background};
+      cursor: not-allowed;
     }
   `
-  const [addClassAnimation, setAddClassAnimation] = useState(
-    'add-to-cart-button'
-  )
-  const handleClickAddToCard = () => {
-    setAddClassAnimation('add-to-cart-button added')
-    setTimeout(() => {
-      setAddClassAnimation('add-to-cart-button')
-    }, 2000)
-  }
+
   return (
     <>
-      {/* periveious */}
       <div className={containerDetails}>
         <div className="product-image">
           <Image src={image} alt={title} className="product-pic" />
@@ -462,30 +493,27 @@ const ProductDetailsPage = ({
               </div>
               <div>
                 <div className={incDecSec}>
-                  <botton type="button" className="decBtn">
+                  <button
+                    type="button"
+                    className="decBtn"
+                    onClick={() => handleIncDecProduct('dec')}
+                  >
                     -
-                  </botton>
+                  </button>
                   <input
                     type="number"
                     className="incDecInput"
                     min="1"
-                    defaultValue="1"
-                    onChange={(e) => console.log(e)}
+                    value={numberOfProduct}
+                    readOnly
                   />
-                  <botton
+                  <button
                     type="button"
                     className="incBtn"
-                    style={{
-                      width: '25px',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      color: 'black',
-                    }}
-                    onClick={(e) => console.log(e)}
+                    onClick={() => handleIncDecProduct('inc')}
                   >
                     +
-                  </botton>
+                  </button>
                 </div>
               </div>
             </div>

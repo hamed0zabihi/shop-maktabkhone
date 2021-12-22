@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux'
 import { FakeDataProducts } from '../../components/Product/FakeDataProducts'
-import { product } from './product/product'
+import { cart } from './product/cart'
+import { product, products } from './product/product'
 import { user } from './user/user'
 
 export const reducers = combineReducers({
   fakeData: FakeDataProducts,
-  products: product,
+  product: product,
+  products: products,
   user: user,
+  cart: cart,
 })

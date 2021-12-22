@@ -2,17 +2,16 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { css } from '@emotion/css'
 import { PRODUCT_HOME_ACTION } from '../../redux/actions/product'
-import { FakeDataProducts } from './FakeDataProducts'
 import Cardt from '../Styles/Card/Cardt'
 import ReactLoading from 'react-loading'
 
 const HomePageProduct = () => {
   const dispatch = useDispatch()
-  const FakeDataProductsGet = FakeDataProducts()
+  const { products, isFetching, error } = useSelector((state) => state.products)
   useEffect(() => {
     dispatch(PRODUCT_HOME_ACTION())
   }, [])
-  const { products, isFetching, error } = useSelector((state) => state.products)
+
   const containerProducts = css`
     display: flex;
     flex-direction: row;
