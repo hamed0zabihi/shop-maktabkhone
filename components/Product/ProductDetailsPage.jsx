@@ -152,7 +152,7 @@ const ProductDetailsPage = (product) => {
       padding: ${theme.productDetailsPage.containerDetails.productDetails.padding};
       display: ${theme.productDetailsPage.containerDetails.productDetails.display};
       flex-direction: ${theme.productDetailsPage.containerDetails.productDetails.flexDirection};
-      width: ${theme.productDetailsPage.containerDetails.productDetails.width};
+      // width: ${theme.productDetailsPage.containerDetails.productDetails.width};
       header {
         margin-bottom: ${theme.productDetailsPage.containerDetails.productDetails.header.marginBottom};
         position: ${theme.productDetailsPage.containerDetails.productDetails.header.position};

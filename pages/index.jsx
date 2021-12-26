@@ -2,8 +2,8 @@ import React from 'react'
 import { css } from '@emotion/css'
 import Space from '../components/Styles/Typography/Space'
 import HomePageProduct from '../components/Product/HomePageProduct'
-
-export default function Home() {
+import { PRODUCT_HOME_ACTION } from '../redux/actions/product'
+export default function Home({ products, isFetching, error }) {
   const flexHeaderStyle = css`
     display: flex !important;
     flex-direction: row;
@@ -50,8 +50,22 @@ export default function Home() {
       <Space />
 
       <div className={flexContainerStyle}>
-        <HomePageProduct />
+        <HomePageProduct
+          products={products}
+          isFetching={isFetching}
+          error={error}
+        />
       </div>
     </div>
   )
+}
+
+Home.getInitialProps = async ({ reduxStore }) => {
+  await reduxStore.dispatch(PRODUCT_HOME_ACTION())
+  const { products, isFetching, error } = await reduxStore.getState().products
+  return {
+    products,
+    isFetching,
+    error,
+  }
 }

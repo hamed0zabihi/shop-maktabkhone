@@ -7,11 +7,9 @@ const ulStyle = css`
 list-style-type: none;
 margin: 0;
 padding: 0;
-overflow: hidden;
-background-color: #000;
-display:flex;
-align-items:center;
-justify-content:center;
+color: #000;
+display: flex;
+flex-direction: row;
 
 }
 `
@@ -20,8 +18,9 @@ const liStyle = css`
   align-items: center;
   a {
     color: white;
-    text-align: center;
-    padding: 14px 16px;
+    display: block;
+    padding: 20px 15px;
+
     text-decoration: none;
     &:hover:not(.active) {
       background-color: #4caf50;
@@ -44,33 +43,62 @@ const imageCssHeader = css`
 
 export default function Header() {
   return (
-    <div>
-      <ul className={ulStyle}>
-        <li className={liStyle}>
-          <Link href="/">Home</Link>
-        </li>
-        <li className={liStyle}>
-          <Link href="/about">About</Link>
-        </li>
-        <li>
-          <Link href="/" className={liStyle}>
-            <a className={imageCssHeader}>
-              <Image
-                src="/images/logo/logo-56px.png"
-                alt="logo"
-                width="48"
-                height="48"
-              />
-            </a>
-          </Link>
-        </li>
-        <li className={liStyle}>
-          <Link href="/contact">Contact</Link>
-        </li>
-        <li className={liStyle}>
-          <Link href="/login">Login</Link>
-        </li>
-      </ul>
-    </div>
+    <header style={{ width: '100%', boxSizing: ' border-box' }}>
+      <div
+        className="container"
+        style={{
+          width: '100%',
+          display: 'block',
+          boxSizing: 'border-box',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            position: 'relative',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            className="brand"
+            style={{ margin: '0', padding: '0', boxSizing: ' border-box' }}
+          >
+            <Link href="/">
+              <a className={imageCssHeader}>
+                <Image
+                  src="/images/logo/logo-56px.png"
+                  alt="logo"
+                  width="48"
+                  height="48"
+                />
+              </a>
+            </Link>
+          </div>
+          <div
+            className="brand"
+            style={{ margin: '0', padding: '0', boxSizing: ' border-box' }}
+          >
+            <ul className={ulStyle}>
+              <li className={liStyle}>
+                <Link href="/">Home</Link>
+              </li>
+              <li className={liStyle}>
+                <Link href="/about">About</Link>
+              </li>
+
+              <li className={liStyle}>
+                <Link href="/contact">Contact</Link>
+              </li>
+              <li className={liStyle}>
+                <Link href="/login">Login</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="widget"></div>
+        </div>
+      </div>
+    </header>
   )
 }

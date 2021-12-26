@@ -5,12 +5,12 @@ import { PRODUCT_HOME_ACTION } from '../../redux/actions/product'
 import Cardt from '../Styles/Card/Cardt'
 import ReactLoading from 'react-loading'
 
-const HomePageProduct = () => {
+const HomePageProduct = ({ products, isFetching, error }) => {
   const dispatch = useDispatch()
-  const { products, isFetching, error } = useSelector((state) => state.products)
-  useEffect(() => {
-    dispatch(PRODUCT_HOME_ACTION())
-  }, [])
+  // const { products, isFetching, error } = useSelector((state) => state.products)
+  // useEffect(() => {
+  //   dispatch(PRODUCT_HOME_ACTION())
+  // }, [])
 
   const containerProducts = css`
     display: flex;
@@ -37,6 +37,7 @@ const HomePageProduct = () => {
         <ReactLoading type="spin" color="red" height={36} width={36} />
       )}
       {!isFetching &&
+        products &&
         products.map((el) => (
           <div key={el.id} className={productItem}>
             <Cardt
